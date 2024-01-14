@@ -1,0 +1,140 @@
+// import java.awt.FlowLayout;
+// import javax.swing.*;
+
+// import java.awt.event.ActionEvent;
+// import java.awt.event.ActionListener;
+// class converter implements ActionListener{
+//     JTextField jtf1, jtf2;
+//     JButton button;
+//     JRadioButton jrb1, jrb2;
+//     converter() {
+//         JFrame frame = new JFrame("Converter");
+//         frame.setSize(300,300);
+//         frame.setVisible(true);
+//         frame.setLayout(new FlowLayout());
+//         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+//         JLabel label = new JLabel("Square Yards");
+//         jtf1 = new JTextField(10);
+//         jtf2 = new JTextField(10);
+//         jtf2.setEditable(false);
+
+//         button = new JButton("Convert");
+//         jrb1 = new JRadioButton("Cents");
+//         jrb2 = new JRadioButton("Square Feets");
+        
+        
+//         frame.add(label);
+//         frame.add(jtf1);
+        
+//         frame.add(jrb1);
+//         frame.add(jtf2);
+        
+//         frame.add(jrb2); 
+       
+//         frame.add(button);
+//         frame.pack();
+
+//         button.addActionListener(this);
+        
+//     }
+
+//     public void actionPerformed(ActionEvent ae) {
+//         double c = 0;
+//         try {
+//             double x = Double.parseDouble(jtf1.getText());
+//             if (jrb1.isSelected()) {
+//                 System.out.println(jrb1.getText());
+                
+//                 c = x * 48.4;
+//             }
+//             else if(jrb2.isSelected()) {
+//                 c = x * 9;
+//             }
+//             jtf2.setText(String.valueOf(c));
+//         }
+//         catch(NumberFormatException n) {
+//             System.out.println("Enter a numerical value");
+//             System.exit(0);
+//         }
+//     }
+    
+//     public static void main(String[] args) {
+//         converter c = new converter();
+        
+//     }
+// }
+import java.awt.FlowLayout;
+import javax.swing.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+class converter implements ActionListener {
+    JTextField jtf1, jtf2;
+    JButton button;
+    JRadioButton jrb1, jrb2;
+
+    converter() {
+        JFrame frame = new JFrame("Converter");
+        frame.setSize(300, 200);
+        frame.setVisible(true);
+        frame.setLayout(new FlowLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Create a panel for the first row
+        JPanel firstRow = new JPanel(new FlowLayout());
+        JLabel label = new JLabel("Square Yards");
+        jtf1 = new JTextField(10);
+        firstRow.add(label);
+        firstRow.add(jtf1);
+
+        // Create a panel for the second row
+        JPanel secondRow = new JPanel(new FlowLayout());
+        jrb1 = new JRadioButton("Cents");
+        jrb2 = new JRadioButton("Square Feet");
+        secondRow.add(jrb1);
+        secondRow.add(jrb2);
+
+        // Create a panel for the third row
+        JPanel thirdRow = new JPanel(new FlowLayout());
+        jtf2 = new JTextField(10);
+        jtf2.setEditable(false);
+        thirdRow.add(jtf2);
+
+        // Create a panel for the fourth row with a centered button
+        JPanel fourthRow = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        button = new JButton("Convert");
+        fourthRow.add(button);
+
+        // Add the panels to the frame
+        frame.add(firstRow);
+        frame.add(secondRow);
+        frame.add(thirdRow);
+        frame.add(fourthRow);
+
+        frame.pack();
+
+        button.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        double c = 0;
+        try {
+            double x = Double.parseDouble(jtf1.getText());
+            if (jrb1.isSelected()) {
+                c = x * 48.4;
+            } else if (jrb2.isSelected()) {
+                c = x * 9;
+            }
+            jtf2.setText(String.valueOf(c));
+        } catch (NumberFormatException n) {
+            System.out.println("Enter a numerical value");
+            System.exit(0);
+        }
+    }
+
+    public static void main(String[] args) {
+        converter c = new converter();
+    }
+}
